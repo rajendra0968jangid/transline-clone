@@ -3,7 +3,7 @@ name: CD Pipeline
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
 
@@ -12,9 +12,23 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Pull Docker image
-      run: sudo docker pull rajendra0968/html-project:latest
-    - name: Delete Old docker container
-      run: sudo docker rm -f cicd-pipeline-container || true
-    - name: Run Docker Container
-      run: sudo docker run -d -p 81:81 --name cicd-pipeline-container rajendra0968/html-project
+      # Step 1: Pull the latest Docker image
+      - name: Pull Docker Image
+        run: |
+          echo "Pulling the latest Docker image..."
+          sudo docker pull rajendra0968/html-project:latest
+
+      # Step 2: Stop and remove any existing Docker container
+      - name: Delete Old Docker Container
+        run: |
+          echo "Stopping and removing old Docker container if it exists..."
+          sudo docker rm -f cicd-pipeline-container || true
+
+      # Step 3: Run a new Docker container
+      - name: Run Docker Container
+        run: |
+          echo "Starting a new Docker container..."
+          sudo docker run -d \
+            -p 80:80 \  # Map the container's port 80 to the host's port 80
+            --name cicd-pipeline-container \
+            rajendra0968/html-project:latest
