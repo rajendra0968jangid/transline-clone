@@ -14,7 +14,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta property="og:title" content="Transline Technologies Limited">
+		<meta property="og:title" content="Techsimula Technologies Limited">
 		<meta property="og:description" content="AN INDUSTRY LEADER WITH BIOMETRIC SUPPORT">
 		<meta property="og:image" content="transline.png">
 
@@ -46,7 +46,7 @@
 		<link rel="stylesheet" href="../css/pdf_viewer.min.css">
 
 
-		<title>Transline Technologies Limited</title>
+		<title>Techsimula Technologies Limited</title>
 
 		<link rel="icon" type="image/png" href="fav.png">
 
@@ -382,7 +382,7 @@
               <div class="contact-icon">
                 <img src="telephone.webp" alt="telephone">
               </div>
-              <a href="tel:+918188861888">8188861888 <br> [For Support]</a>
+              <a href="tel:+919251494002">9251494002 <br> [For Support]</a>
             </div>
             <div class="touch-content">
               <div class="contact-icon">
@@ -407,7 +407,7 @@
     <div class="copyright-content">
       <div class="d-flex align-items-center justify-content-center">
         <p class="fw-bold">
-          © Transline Technologies Limited | <span id="current-year"></span>
+          © Techsimula Technologies Limited | <span id="current-year"></span>
         </p>
       </div>
     </div>
