@@ -1,22 +1,31 @@
-name: Docker Image CI
+name: Deploy to Kubernetes
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main  # Trigger on push to the main branch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Login Dockerhub
-      env:
-        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      
-    - name: Build the Docker image
-      run: docker build -t rajendra0968/html-project .
-    - name: Push to Dockerhub
-      run: docker push rajendra0968/html-project:latest
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t rajendra0968/html-project:latest .
+        docker push rajendra0968/html-project:latest
+
+    - name: Configure kubectl
+      run: |
+        echo "${{ secrets.KUBECONFIG }}" > kubeconfig
+        export KUBECONFIG=kubeconfig
+
+    - name: Update Kubernetes deployment
+      run: |
+        kubectl set image deployment/react-app react-app=rajendra0968/html-project:latest
